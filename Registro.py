@@ -27,7 +27,7 @@ if st.button("Registrar"):
     df = pd.concat([df, nuevo_df], ignore_index=True)
     df.to_csv("usuarios.csv", index=False)
     
-     st.success("Usuario registrado con éxito")
+    st.success("Usuario registrado con éxito")
    
 
 # Mostrar los datos de usuario registrados en el archivo CSV
