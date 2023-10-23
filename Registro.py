@@ -28,9 +28,20 @@ if st.button("Registrar"):
     df = pd.concat([df, nuevo_df], ignore_index=True)
   
     
-    # Actualizar el archivo CSV en GitHub
-    with open("usuarios.csv", "w") as f:
-        df.to_csv(f, index=False)
+    credenciales = 'ruta/a/tu/archivo-de-credenciales.json'
+    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(credenciales, scope)
+    gc = gspread.authorize(credentials)
+    
+    # Abrir la hoja de cálculo en Google Sheets
+    gc_url = 'URL_DE_TU_HOJA_EN_GOOGLE_SHEETS'
+    worksheet = gc.open_by_url(gc_url).sheet1
+    
+    # Leer la copia local del archivo CSV
+    df_local = pd.read_csv("usuarios.csv")
+    
+    # Actualizar la hoja de cálculo en Google Sheets
+    worksheet.update([df_local.columns.values.tolist()] + df_local.values.tolist())
     st.success("Usuario registrado con éxito")
    
 
