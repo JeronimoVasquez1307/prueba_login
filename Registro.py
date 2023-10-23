@@ -1,8 +1,14 @@
 import streamlit as st
 import pandas as pd
 import requests
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
-
+# Configura las credenciales
+credenciales = 'ruta/a/tu/archivo-de-credenciales.json'
+scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+credentials = ServiceAccountCredentials.from_json_keyfile_name(credenciales, scope)
+gc = gspread.authorize(credentials)
 # Leer el archivo CSV en un DataFrame
 url = "https://raw.githubusercontent.com/JeronimoVasquez1307/prueba_login/main/usuarios.csv"
 df = pd.read_csv(url)
