@@ -32,7 +32,9 @@ if st.button("Registrar"):
     url = "https://api.github.com/repos/JeronimoVasquez1307/prueba_login/usuarios.csv"
     data = {"content": df.to_csv(index=False).encode("utf-8")}
     response = requests.post(url, data=data)
-    st.success("Usuario registrado con éxito")
+    if response.status_code == 200:
+        st.success("Usuario registrado con éxito")
+   
 
 # Mostrar los datos de usuario registrados en el archivo CSV
 st.subheader("Usuarios Registrados")
