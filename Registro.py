@@ -28,13 +28,13 @@ if st.button("Registrar"):
     df = pd.concat([df, nuevo_df], ignore_index=True)
   
     
-    credenciales = 'ruta/a/tu/archivo-de-credenciales.json'
+    credenciales = 'baseusuarios-402906-cb3c6dfcc470.json'
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
     credentials = ServiceAccountCredentials.from_json_keyfile_name(credenciales, scope)
     gc = gspread.authorize(credentials)
     
     # Abrir la hoja de cálculo en Google Sheets
-    gc_url = 'URL_DE_TU_HOJA_EN_GOOGLE_SHEETS'
+    gc_url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTAfp6uFRC6PylYstGVXoXaEiXv8TTqS3BFcx_wVJ-BfQOILj9OUluNgQQx4Ba4-kujstzHgF71Pv6-/pub?output=csv'
     worksheet = gc.open_by_url(gc_url).sheet1
     
     # Leer la copia local del archivo CSV
