@@ -2,11 +2,9 @@ import streamlit as st
 import pandas as pd
 import requests
 
-url = "https://raw.githubusercontent.com/JeronimoVasquez1307/prueba_login/main/usuarios.csv"
-response = requests.get(url)
 
 # Leer el archivo CSV en un DataFrame
-df = pd.read_csv(response.content)
+df = pd.read_csv("usuarios.csv")
 
 # Título de la aplicación
 st.title("Registro de Usuarios")
