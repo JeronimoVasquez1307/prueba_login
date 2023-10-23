@@ -31,7 +31,7 @@ if st.button("Registrar"):
     df = pd.concat([df, nuevo_df], ignore_index=True)
 
     # Actualizar el archivo CSV en GitHub
-    df.to_csv(github_csv_url, index=False, header=True)
+    df.to_csv(url, index=False, header=True)
     st.success("Usuario registrado con éxito")
    
 
