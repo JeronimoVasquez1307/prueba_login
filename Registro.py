@@ -4,7 +4,8 @@ import requests
 
 
 # Leer el archivo CSV en un DataFrame
-df = pd.read_csv("usuarios.csv")
+url = "https://raw.githubusercontent.com/JeronimoVasquez1307/prueba_login/main/usuarios.csv"
+df = pd.read_csv(url)
 
 # Título de la aplicación
 st.title("Registro de Usuarios")
@@ -27,6 +28,10 @@ if st.button("Registrar"):
     df = pd.concat([df, nuevo_df], ignore_index=True)
     df.to_csv("usuarios.csv", index=False)
     
+     # Actualizar el archivo CSV en GitHub
+    url = "https://api.github.com/repos/JeronimoVasquez1307/prueba_login/contents/usuarios.csv"
+    data = {"content": df.to_csv(index=False).encode("utf-8")}
+    response = requests.put(url,data=data)
     st.success("Usuario registrado con éxito")
    
 
