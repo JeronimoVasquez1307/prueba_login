@@ -1,7 +1,12 @@
 import streamlit as st
 import pandas as pd
+import requests
 
-df = pd.read_csv("usuarios.csv")
+url = "https://raw.githubusercontent.com/JeronimoVasquez1307/prueba_login/main/usuarios.csv"
+response = requests.get(url)
+
+# Leer el archivo CSV en un DataFrame
+df = pd.read_csv(response.content)
 
 # Título de la aplicación
 st.title("Registro de Usuarios")
@@ -23,6 +28,10 @@ if st.button("Registrar"):
     nuevo_df = pd.DataFrame([nueva_fila])
     df = pd.concat([df, nuevo_df], ignore_index=True)
     df.to_csv("usuarios.csv", index=False)
+    # Subir el archivo CSV a GitHub
+    url = "https://api.github.com/repos/JeronimoVasquez1307/prueba_login/usuarios.csv"
+    data = {"content": df.to_csv(index=False).encode("utf-8")}
+    response = requests.post(url, data=data)
     st.success("Usuario registrado con éxito")
 
 # Mostrar los datos de usuario registrados en el archivo CSV
