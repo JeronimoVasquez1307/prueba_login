@@ -5,12 +5,15 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 # Configura las credenciales
-credenciales = 'ruta/a/tu/archivo-de-credenciales.json'
+credenciales = 'baseusuarios-402906-cb3c6dfcc470.json'
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 credentials = ServiceAccountCredentials.from_json_keyfile_name(credenciales, scope)
 gc = gspread.authorize(credentials)
 # Leer el archivo CSV en un DataFrame
-url = "https://raw.githubusercontent.com/JeronimoVasquez1307/prueba_login/main/usuarios.csv"
+# Abre la hoja de Google Sheets por su URL
+gc_url = 'https://docs.google.com/spreadsheets/d/1urfXFaV-Ve11mAQJ4xKDX-4k-UPrYgSwVCx57U2fSu4/edit#gid=1768604619'
+worksheet = gc.open_by_url(gc_url).usuarios
+url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAfp6uFRC6PylYstGVXoXaEiXv8TTqS3BFcx_wVJ-BfQOILj9OUluNgQQx4Ba4-kujstzHgF71Pv6-/pubhtml"
 df = pd.read_csv(url)
 
 # Título de la aplicación
@@ -32,19 +35,13 @@ if st.button("Registrar"):
     }
     nuevo_df = pd.DataFrame([nueva_fila])
     df = pd.concat([df, nuevo_df], ignore_index=True)
-    # Actualizar el archivo CSV en GitHub
-    df.to_csv("usuarios.csv", index=False, header=True)
+    
+    # Actualizar la hoja de Google Sheets con los datos actualizados
+    worksheet.update([df.columns.values.tolist()] + df.values.tolist())
+    st.success("Usuario registrado con éxito y archivo actualizado en Google Sheets")
       
     
-     # Realizar una solicitud HTTP para cargar los datos actualizados en GitHub
-    with open("usuarios.csv", "rb") as file:
-        response = requests.put(url, data=file, headers={'Content-Type': 'application/octet-stream'})
-
-    if response.status_code == 200:
-        st.success("Usuario registrado con éxito y archivo actualizado en GitHub")
-    else:
-        st.error("Error al actualizar el archivo en GitHub")
-   
+    
 
 # Mostrar los datos de usuario registrados en el archivo CSV
 st.subheader("Usuarios Registrados")
