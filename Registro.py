@@ -4,7 +4,7 @@ import requests
 
 
 # Leer el archivo CSV en un DataFrame
-url = "https://raw.githubusercontent.com/JeronimoVasquez1307/prueba_login/main/usuarios.csv"
+url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAfp6uFRC6PylYstGVXoXaEiXv8TTqS3BFcx_wVJ-BfQOILj9OUluNgQQx4Ba4-kujstzHgF71Pv6-/pub?output=csv"
 df = pd.read_csv(url)
 
 # Título de la aplicación
