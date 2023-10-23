@@ -28,12 +28,8 @@ if st.button("Registrar"):
     nuevo_df = pd.DataFrame([nueva_fila])
     df = pd.concat([df, nuevo_df], ignore_index=True)
     df.to_csv("usuarios.csv", index=False)
-    # Subir el archivo CSV a GitHub
-    url = "https://api.github.com/repos/JeronimoVasquez1307/prueba_login/usuarios.csv"
-    data = {"content": df.to_csv(index=False).encode("utf-8")}
-    response = requests.post(url, data=data)
-    if response.status_code == 200:
-        st.success("Usuario registrado con éxito")
+    
+     st.success("Usuario registrado con éxito")
    
 
 # Mostrar los datos de usuario registrados en el archivo CSV
