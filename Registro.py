@@ -35,7 +35,7 @@ if st.button("Registrar"):
     gc = gspread.authorize(credentials)
     
     # Abrir la hoja de cálculo en Google Sheets
-    gc_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAfp6uFRC6PylYstGVXoXaEiXv8TTqS3BFcx_wVJ-BfQOILj9OUluNgQQx4Ba4-kujstzHgF71Pv6-/pub?output=csv"
+    gc_url = "https://docs.google.com/spreadsheets/d/1urfXFaV-Ve11mAQJ4xKDX-4k-UPrYgSwVCx57U2fSu4/edit#gid=1768604619"
     worksheet = gc.open_by_url(gc_url).sheet1
     
     # Leer la copia local del archivo CSV
