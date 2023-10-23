@@ -11,7 +11,7 @@ credentials = ServiceAccountCredentials.from_json_keyfile_name(credenciales, sco
 gc = gspread.authorize(credentials)
 # Leer el archivo CSV en un DataFrame
 # Abre la hoja de Google Sheets por su URL
-gc_url = 'https://docs.google.com/spreadsheets/d/1urfXFaV-Ve11mAQJ4xKDX-4k-UPrYgSwVCx57U2fSu4/edit#gid=1768604619'
+gc_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAfp6uFRC6PylYstGVXoXaEiXv8TTqS3BFcx_wVJ-BfQOILj9OUluNgQQx4Ba4-kujstzHgF71Pv6-/pubhtml"
 worksheet = gc.open_by_url(gc_url).usuarios
 url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAfp6uFRC6PylYstGVXoXaEiXv8TTqS3BFcx_wVJ-BfQOILj9OUluNgQQx4Ba4-kujstzHgF71Pv6-/pubhtml"
 df = pd.read_csv(url)
