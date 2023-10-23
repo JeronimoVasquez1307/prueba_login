@@ -26,7 +26,7 @@ if st.button("Registrar"):
     }
     nuevo_df = pd.DataFrame([nueva_fila])
     df = pd.concat([df, nuevo_df], ignore_index=True)
-    df.to_csv("usuarios.csv", index=False)
+  
     
      # Actualizar el archivo CSV en GitHub
     url = "https://api.github.com/repos/JeronimoVasquez1307/prueba_login/contents/usuarios.csv"
