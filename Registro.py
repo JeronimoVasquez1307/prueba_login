@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 import requests
-
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 # Leer el archivo CSV en un DataFrame
 url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAfp6uFRC6PylYstGVXoXaEiXv8TTqS3BFcx_wVJ-BfQOILj9OUluNgQQx4Ba4-kujstzHgF71Pv6-/pub?output=csv"
